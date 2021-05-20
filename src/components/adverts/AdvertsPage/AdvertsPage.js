@@ -1,5 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {getAdvertsList} from '../../store/selectors';
+import {advertsLoaded} from '../../store/actions';
 
 import Layout from '../../layout';
 import FiltersForm from './FiltersForm';
@@ -18,11 +21,14 @@ function AdvertsPage() {
     []
   );
   const [filters, setFilters] = React.useState(getFilters);
+  
+  const dispatch = useDispatch()
+  const ListofAdverts = useSelector(getAdvertsList)
 
   React.useEffect(() => {
-    execute(getAdverts());
+    execute(getAdverts().then(adverts => dispatch(advertsLoaded(adverts))));
   }, []);
-
+ 
   React.useEffect(() => {
     saveFilters(filters);
   }, [filters]);
@@ -31,7 +37,8 @@ function AdvertsPage() {
     return <Redirect to="/login" />;
   }
 
-  const filteredAdverts = filterAdverts(adverts, filters);
+  const filteredAdverts = filterAdverts(ListofAdverts, filters);
+ 
 
   return (
     <Layout>

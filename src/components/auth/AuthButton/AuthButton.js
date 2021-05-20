@@ -26,8 +26,6 @@ const AuthButton = ({ onLogout, isLogged }) => {
   );
 };
 
-
-
 const mapStateToProps = state => ({
   isLogged: getIsLogged(state)
 });

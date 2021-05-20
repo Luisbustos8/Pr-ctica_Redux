@@ -1,3 +1,4 @@
+
 export const saleFilter = {
   all: { value: 'all', label: 'All' },
   sell: { value: 'sell', label: 'Sell' },
@@ -36,9 +37,11 @@ const filterBySale = filter => ({ sale }) =>
 const filterByTags = filter => ({ tags }) =>
   !filter.length || filter.every(tag => tags.includes(tag));
 
-export const filterAdverts = (adverts, { name, price, sale, tags }) => {
+
+export const filterAdverts = (ListofAdverts, { name, price, sale, tags }) => {
+
   const applyFilters = (...filters) =>
-    adverts.filter(advert => filters.every(filter => filter(advert)));
+    ListofAdverts.filter(ListofAdverts => filters.every(filter => filter(ListofAdverts)));
 
   return applyFilters(
     filterByName(name),
