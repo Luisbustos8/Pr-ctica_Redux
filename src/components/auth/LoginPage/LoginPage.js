@@ -3,11 +3,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router';
 import {getUI} from '../../store/selectors';
 
-import { login } from '../../../api/auth';
 import {
-  authLoginSuccess,
-  authLoginRequest,
-  authLoginFailure,
+  loginAction,
   resetError
 } from '../../store/actions';
 
@@ -22,16 +19,8 @@ function LoginPage() {
   const history = useHistory();
   const location = useLocation();
 
-  const handleSubmit = async credentials => {
-    dispatch(authLoginRequest())
-    try {
-      const {from} = location.state || { from : { pathname: '/' } }
-      await login(credentials);
-      dispatch(authLoginSuccess())
-      history.replace(from)
-    } catch {
-      dispatch(authLoginFailure(error))
-    };
+  const handleSubmit = credentials => {
+    dispatch(loginAction(credentials, history, location));
   };
 
   return (

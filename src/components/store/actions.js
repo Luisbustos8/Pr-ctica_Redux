@@ -7,8 +7,7 @@ import {
      AUTH_LOGIN_FAILURE, 
      UI_RESET_ERROR
     } from './types';
-
-
+    
 export const authLoginRequest = () => {
     return {
         type: AUTH_LOGIN_REQUEST,
@@ -26,6 +25,21 @@ export const authLoginFailure = error => {
         error: true,
     };
 };
+
+export const loginAction = (credentials, history, location) => {
+    return async function(dispatch, getState, {api}){
+        dispatch(authLoginRequest());
+        try {
+            await api.auth.login(credentials);
+            dispatch(authLoginSuccess())
+            const {from} = location.state || { from : { pathname: '/' } }
+            history.replace(from)
+        } catch (error) {
+            dispatch(authLoginFailure(error))
+        };
+    }
+  };
+
 
 export const authLogout = () => {
     return {
