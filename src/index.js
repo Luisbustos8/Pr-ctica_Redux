@@ -12,7 +12,7 @@ import configureStore from './components/store';
 const accessToken = storage.get('auth');
 configureClient({ accessToken });
 
-const store = configureStore({preloadedState: {auth: !!accessToken, adverts: []}});
+const store = configureStore({preloadedState: {auth: !!accessToken}});
 
 
 const render = ()  => {
