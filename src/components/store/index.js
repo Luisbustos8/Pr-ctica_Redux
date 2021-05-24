@@ -10,9 +10,9 @@ import * as adverts from '../../api/adverts';
 
 const api= {auth, adverts}
 
-const middleware = [thunk.withExtraArgument({ api })];
 
-const configureStore = ({ preloadedState }) => {
+const configureStore = ({ preloadedState, history }) => {
+    const middleware = [thunk.withExtraArgument({ api, history })];
     const store = createStore(
         combineReducers(reducers), 
         preloadedState, 

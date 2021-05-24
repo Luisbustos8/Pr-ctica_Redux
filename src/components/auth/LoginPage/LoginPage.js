@@ -1,6 +1,5 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useHistory, useLocation} from 'react-router';
 import {getUI} from '../../store/selectors';
 
 import {
@@ -16,11 +15,8 @@ function LoginPage() {
   const dispatch = useDispatch();
   const {isLoading, error} = useSelector(getUI);
 
-  const history = useHistory();
-  const location = useLocation();
-
   const handleSubmit = credentials => {
-    dispatch(loginAction(credentials, history, location));
+    dispatch(loginAction(credentials));
   };
 
   return (
