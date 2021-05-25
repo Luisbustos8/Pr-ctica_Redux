@@ -1,12 +1,17 @@
 import React from 'react';
 import T from 'prop-types';
 
+
 import { ConfirmationButton } from '../../shared';
 import placeholder from '../../../assets/images/placeholder.png';
 import { advert } from '../propTypes';
 
-function AdvertDetail({ name, sale, price, tags, photo, onDelete }) {
+
+
+function AdvertDetail({ id, name, sale, price, tags, photo, onDelete }) {
+   
   return (
+   
     <div>
       <p>{name}</p>
       <p>{sale ? 'Sell' : 'Buy'}</p>
@@ -26,11 +31,11 @@ function AdvertDetail({ name, sale, price, tags, photo, onDelete }) {
   );
 }
 
-AdvertDetail.propTypes = {
-  ...advert,
-  photo: T.string,
-  onDelete: T.func.isRequired,
-};
+// AdvertDetail.propTypes = {
+//   ...advert,
+//   photo: T.string,
+//   onDelete: T.func.isRequired,
+// };
 
 AdvertDetail.defaultProps = {
   photo: null,

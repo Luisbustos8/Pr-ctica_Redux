@@ -13,6 +13,7 @@ function CheckboxGroup({ options, value, onChange, ...props }) {
     });
   };
 
+
   return (
     <div>
       {options.map(option => (

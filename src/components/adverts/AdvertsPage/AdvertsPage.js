@@ -22,7 +22,7 @@ function AdvertsPage() {
     []
   );
  
-  const {isLoading, error} = useSelector(getUI);
+  const { error} = useSelector(getUI);
   const [filters, setFilters] = React.useState(getFilters);
   
   const dispatch = useDispatch()
