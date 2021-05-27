@@ -54,12 +54,20 @@ export function adverts(state=initialState.adverts, action) {
       switch (action.type) {
         case ADVERTS_LOADED_SUCCESS:
             return {...state, loaded:true, data: [...action.payload]}
-        case ADVERTS_CREATED_SUCCESS:
-            return {...state, loaded:false, data: [...state.data, action.payload] };
         default:
            return state;
     };
 };
+
+export function createdAdvert(state=initialState.newAdvert, action) {
+    switch (action.type) {
+        case ADVERTS_CREATED_SUCCESS:
+            return { ...state,  data: [...state.data, action.payload] }
+        default:
+            return state;
+    }
+}
+
 export function advertDetail(state=initialState.advertDetail, action) {
     switch (action.type) {
         case ADVERT_DETAIL_SUCCESS:

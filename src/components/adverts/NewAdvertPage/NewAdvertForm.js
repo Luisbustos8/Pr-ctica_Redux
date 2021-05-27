@@ -4,10 +4,14 @@ import useForm from '../../../hooks/useForm';
 import { InputFile } from '../../shared';
 import SelectTags from '../SelectTags';
 
+import { getNewAdvert } from '../../store/selectors';
+
 const validName = ({ name }) => name;
 const validPrice = ({ price }) =>
   !Number.isNaN(price) && Number.isFinite(price) && price >= 0;
 const validTags = ({ tags }) => !!tags.length;
+
+
 
 function NewAdvertForm({ onSubmit }) {
   const { formValue: advert, handleChange, handleSubmit, validate } = useForm({
@@ -18,6 +22,8 @@ function NewAdvertForm({ onSubmit }) {
     photo: null,
   });
   const { name, sale, price, tags } = advert;
+
+  
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

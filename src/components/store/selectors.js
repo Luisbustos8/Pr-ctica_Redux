@@ -10,5 +10,7 @@ export const getTagsLoaded = state => state.advertsTags.loaded;
 
 export const getAdvertDetail = state => state.advertDetail.data;
 
+export const getNewAdvert = state => console.log('tu state', state.createdAdvert.data) || state.createdAdvert.data
+
 
 export const getUI = state => state.ui;

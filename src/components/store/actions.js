@@ -151,7 +151,8 @@ export const advertsCreatedAction = advert => {
         try {
             const createdAdvert = await api.adverts.createAdvert(advert);
             dispatch(advertsCreatedSuccess(createdAdvert))
-            // history.push(`/adverts/${id}`)
+            console.log(createdAdvert)
+            history.push('/adverts')
             return createdAdvert
         } catch (error) {
             dispatch(advertsCreatedFailure(error))

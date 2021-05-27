@@ -15,9 +15,7 @@ function AdvertPage() {
   const error = useSelector(getUI)
 
   const adverts = useSelector(getAdvertDetail);
-  console.log('pepe', adverts)
-
-
+ 
   React.useEffect(() => {
     dispatch(advertsDetailAction(advertId))
   }, [advertId]);
