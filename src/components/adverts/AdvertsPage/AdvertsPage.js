@@ -27,6 +27,7 @@ function AdvertsPage() {
   
   const dispatch = useDispatch()
   const ListofAdverts = useSelector(getAdvertsList)
+
   
 
   React.useEffect(() => {

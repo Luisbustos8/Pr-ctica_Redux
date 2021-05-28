@@ -123,6 +123,40 @@ export const advertsTagsAction = () => {
         };
     };
 };
+export const advertsDetailRequest = () => {
+    return {
+        type: ADVERT_DETAIL_REQUEST,
+    };
+};
+
+export const advertsDetailSuccess = id => {
+    return {
+        type: ADVERT_DETAIL_SUCCESS,
+        payload: id,
+    };
+};
+
+export const advertsDetailFailure = error => {
+    return {
+        type: ADVERT_DETAIL_FAILURE,
+        payload: error,
+        error: true,
+    };
+};
+
+export const advertsDetailAction = id => {
+    return async function(dispatch, getState, {api, history}) {
+        dispatch(advertsDetailRequest())
+        try {
+            const advertDetail = await api.adverts.getAdvert(id);
+            dispatch(advertsDetailSuccess(advertDetail))
+            return advertDetail
+            // history.push('/adverts/' + id)
+        } catch (error) {
+            dispatch(advertsDetailFailure(error))
+        }
+    };
+};
 
 export const advertsCreatedRequest = () => {
     return {
@@ -151,45 +185,10 @@ export const advertsCreatedAction = advert => {
         try {
             const createdAdvert = await api.adverts.createAdvert(advert);
             dispatch(advertsCreatedSuccess(createdAdvert))
-            console.log(createdAdvert)
             history.push('/adverts')
             return createdAdvert
         } catch (error) {
             dispatch(advertsCreatedFailure(error))
-        }
-    };
-};
-
-export const advertsDetailRequest = () => {
-    return {
-        type: ADVERT_DETAIL_REQUEST,
-    };
-};
-
-export const advertsDetailSuccess = id => {
-    return {
-        type: ADVERT_DETAIL_SUCCESS,
-        payload: id,
-    };
-};
-
-export const advertsDetailFailure = error => {
-    return {
-        type: ADVERT_DETAIL_FAILURE,
-        payload: error,
-        error: true,
-    };
-};
-
-export const advertsDetailAction = id => {
-    return async function(dispatch, getState, {api, history}) {
-        dispatch(advertsDetailRequest())
-        try {
-            const advertDetail = await api.adverts.getAdvert(id);
-            dispatch(advertsDetailSuccess(advertDetail))
-            history.push('/adverts/' + id)
-        } catch (error) {
-            dispatch(advertsDetailFailure(error))
         }
     };
 };

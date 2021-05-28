@@ -71,7 +71,7 @@ export function createdAdvert(state=initialState.newAdvert, action) {
 export function advertDetail(state=initialState.advertDetail, action) {
     switch (action.type) {
         case ADVERT_DETAIL_SUCCESS:
-            return {...state, loaded: true, data: action.payload}
+            return {...state, loaded:true, data: action.payload}
         default:
             return state;
     };

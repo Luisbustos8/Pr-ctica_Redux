@@ -3,18 +3,18 @@ import T from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
-import { createAdvert } from '../../../api/adverts';
+
 import usePromise from '../../../hooks/usePromise';
 import Layout from '../../layout';
 import NewAdvertForm from './NewAdvertForm';
 import { advertsCreatedAction } from '../../store/actions';
-import { getAdvertDetail } from '../../store/selectors';
+import {  getUI } from '../../store/selectors';
 
 function NewAdvertPage({ history }) {
-  const { isPending: isLoading, error,  } = usePromise(null);
+ 
 
   const dispatch = useDispatch();
-  const advertsDetail = useSelector(getAdvertDetail);
+  const error = useSelector(getUI)
 
   const handleSubmit = newAdvert => {
     dispatch(advertsCreatedAction(newAdvert));

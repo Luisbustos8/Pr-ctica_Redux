@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, useParams} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 
 import Layout from '../../layout';
 import AdvertDetail from './AdvertDetail';
@@ -8,16 +8,18 @@ import {advertsDetailAction, advertsDeletedAction} from '../../store/actions';
 import { getAdvertDetail, getUI } from '../../store/selectors';
 
 
-function AdvertPage() {
+function AdvertPage({...props}) {
   const { advertId } = useParams();
 
+  
   const dispatch = useDispatch();
   const error = useSelector(getUI)
 
-  const adverts = useSelector(getAdvertDetail);
+  const adverts = useSelector(getAdvertDetail => advertId )
+  
  
   React.useEffect(() => {
-    dispatch(advertsDetailAction(advertId))
+    dispatch(advertsDetailAction(advertId));
   }, [advertId]);
 
   const handleDelete = () => {
@@ -38,5 +40,7 @@ function AdvertPage() {
     </Layout>
   );
 }
+
+
 
 export default AdvertPage;

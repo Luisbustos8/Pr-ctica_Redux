@@ -2,6 +2,8 @@ import React from 'react';
 
 import { ConfirmationButton } from '../../shared';
 import placeholder from '../../../assets/images/placeholder.png';
+import { connect } from 'react-redux';
+import { getAdvertDetail, getUI } from '../../store/selectors';
 
 
 
@@ -27,7 +29,6 @@ function AdvertDetail({ name, sale, price, tags, photo, onDelete }) {
     </div>
   );
 }
-
 
 
 AdvertDetail.defaultProps = {
