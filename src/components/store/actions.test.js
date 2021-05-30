@@ -1,27 +1,21 @@
-import { authLoginRequest } from './actions';
+import { authLoginRequest, advertsLoadedSuccess, loginAction } from './actions';
+import {AUTH_LOGIN_REQUEST, AUTH_LOGIN_SUCCESS} from './types';
 
+
+// TEST FUNCIÓN SÍNCRONA -->
 describe('authLoginRequest', () => {
     test('should return an AUTH_LOGIN_REQUEST action', ()=> {
         const result = authLoginRequest()
-        expect(result.type).toEqual({ type: AUTH_LOGIN_REQUEST });
+        expect(result).toEqual( {"type": "AUTH_LOGIN_REQUEST"} );
     });
 });
 
-describe('advertsLoadedSuccess', () => {
-    test('should return a ADVERTS_LOADED_SUCCESS action', () => {
-        const adverts = 'adverts';
-        const expectedAction = { type: ADVERTS_LOADED_SUCCESS, payload: adverts}
-        const result = advertsLoadedSuccess(adverts);
-        expect(result).toEqual(expectedAction)
-    });
-});
-
-// TEST FUNCIÓN ASÍNCRONA
+// TEST FUNCIÓN ASÍNCRONA -->
 
 describe('loginAction', () =>{
     describe('when login api resolves',() =>{
         const credentials = 'credentials';
-        const thunk = loginAction(credentials);
+        const action = loginAction(credentials);
         const dispatch = jest.fn();
         const getState = () => {};
         const api = {
@@ -48,7 +42,7 @@ describe('loginAction', () =>{
 
         test('should redirect to /', async () => {
             await action(dispatch, getState, {api, history});
-            expect(history.replace).toHaveBeenNthCalledWith({pathname: '/'});
+            expect(history.replace).toHaveBeenCalledWith({pathname: '/'});
         });
         
     });

@@ -17,7 +17,7 @@ import {
 } from './types';
 
 
-const initialState = {
+export const initialState = {
     auth: false,
     adverts: {
         loaded: false,
