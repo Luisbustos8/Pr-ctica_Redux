@@ -13,9 +13,10 @@ function AdvertPage({...props}) {
 
   
   const dispatch = useDispatch();
-  const error = useSelector(getUI)
+  const error = useSelector(getUI);
 
-  const adverts = useSelector(getAdvertDetail => advertId )
+
+  const adverts = useSelector((state)=>getAdvertDetail(state, advertId))
   
  
   React.useEffect(() => {

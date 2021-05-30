@@ -1,4 +1,5 @@
 
+import { getAdvertsLoaded } from './selectors';
 import { 
     AUTH_LOGOUT,
      ADVERTS_LOADED_REQUEST,
@@ -83,6 +84,10 @@ export const advertsLoadedFailure = error => {
 
 export const advertsLoadAction = () => {
     return async function(dispatch, getState, {api}) {
+        const advertsLoaded = getAdvertsLoaded(getState());
+        if (advertsLoaded){
+            return;
+        }
         dispatch(advertsLoadedRequest())
         try {
             const adverts = await api.adverts.getAdverts();
@@ -151,7 +156,6 @@ export const advertsDetailAction = id => {
             const advertDetail = await api.adverts.getAdvert(id);
             dispatch(advertsDetailSuccess(advertDetail))
             return advertDetail
-            // history.push('/adverts/' + id)
         } catch (error) {
             dispatch(advertsDetailFailure(error))
         }

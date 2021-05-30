@@ -1,3 +1,4 @@
+import { advert } from '../adverts/propTypes';
 import { 
     AUTH_LOGIN_REQUEST,
     AUTH_LOGIN_SUCCESS, 
@@ -29,10 +30,6 @@ const initialState = {
     newAdvert: {
         data: []
     },
-    advertDetail: {
-        loaded: false,
-        data: []
-    },
     UI: {
         loading: false,
         error: null, 
@@ -54,21 +51,17 @@ export function adverts(state=initialState.adverts, action) {
       switch (action.type) {
         case ADVERTS_LOADED_SUCCESS:
             return {...state, loaded:true, data: [...action.payload]}
+        case ADVERTS_CREATED_SUCCESS:
+             return { ...state,  data: [...state.data, action.payload] }
+        case ADVERTS_DELETED_SUCCESS:
+            return { ...state, loaded: false, data: [...state.data.filter((advert) => advert.id !== action.payload)]};
         default:
            return state;
     };
 };
 
-export function createdAdvert(state=initialState.newAdvert, action) {
-    switch (action.type) {
-        case ADVERTS_CREATED_SUCCESS:
-            return { ...state,  data: [...state.data, action.payload] }
-        default:
-            return state;
-    }
-}
 
-export function advertDetail(state=initialState.advertDetail, action) {
+export function advertDetail(state=initialState.adverts, action) {
     switch (action.type) {
         case ADVERT_DETAIL_SUCCESS:
             return {...state, loaded:true, data: action.payload}

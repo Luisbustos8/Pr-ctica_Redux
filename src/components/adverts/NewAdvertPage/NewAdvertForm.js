@@ -4,8 +4,6 @@ import useForm from '../../../hooks/useForm';
 import { InputFile } from '../../shared';
 import SelectTags from '../SelectTags';
 
-import { getNewAdvert } from '../../store/selectors';
-
 const validName = ({ name }) => name;
 const validPrice = ({ price }) =>
   !Number.isNaN(price) && Number.isFinite(price) && price >= 0;
