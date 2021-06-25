@@ -55,13 +55,23 @@ export const loginAction = (credentials) => {
     }
   };
 
-
 export const authLogout = () => {
-    return {
-        type: AUTH_LOGOUT,
-    };
+	return {
+		type: AUTH_LOGOUT,
+	};
 };
 
+export const logoutAction = () => {
+    return async function (dispatch, getState, {api}) {
+        dispatch(authLogout)
+        try {
+            await api.auth.logout()
+        } catch (err) {
+            console.error('ERROR', err)
+        }
+    }
+ }
+ 
 export const advertsLoadedRequest = () => {
     return {
         type: ADVERTS_LOADED_REQUEST,
@@ -189,7 +199,8 @@ export const advertsCreatedAction = advert => {
         try {
             const createdAdvert = await api.adverts.createAdvert(advert);
             dispatch(advertsCreatedSuccess(createdAdvert))
-            history.push('/adverts')
+            const id = createdAdvert.id
+            history.push(`/adverts/${id}`)
             return createdAdvert
         } catch (error) {
             dispatch(advertsCreatedFailure(error))

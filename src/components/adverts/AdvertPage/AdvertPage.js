@@ -17,11 +17,12 @@ function AdvertPage({...props}) {
 
 
   const adverts = useSelector((state)=>getAdvertDetail(state, advertId))
+  // console.log(adverts)
   
  
   React.useEffect(() => {
     dispatch(advertsDetailAction(advertId));
-  }, [advertId]);
+  }, []);
 
   const handleDelete = () => {
     dispatch(advertsDeletedAction(advertId));
@@ -37,7 +38,7 @@ function AdvertPage({...props}) {
 
   return (
     <Layout>
-      {advertId && <AdvertDetail {...adverts} onDelete={handleDelete} />}
+      {adverts && <AdvertDetail {...adverts} onDelete={handleDelete} />}
     </Layout>
   );
 }

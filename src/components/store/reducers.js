@@ -1,4 +1,4 @@
-import { advert } from '../adverts/propTypes';
+
 import { 
     AUTH_LOGIN_REQUEST,
     AUTH_LOGIN_SUCCESS, 
@@ -27,9 +27,6 @@ export const initialState = {
         loaded: false,
         tags: []
     },
-    newAdvert: {
-        data: []
-    },
     UI: {
         loading: false,
         error: null, 
@@ -52,6 +49,7 @@ export function adverts(state=initialState.adverts, action) {
         case ADVERTS_LOADED_SUCCESS:
             return {...state, loaded:true, data: [...action.payload]}
         case ADVERTS_CREATED_SUCCESS:
+        case ADVERT_DETAIL_SUCCESS:
              return { ...state,  data: [...state.data, action.payload] }
         case ADVERTS_DELETED_SUCCESS:
             return { ...state, loaded: false, data: [...state.data.filter((advert) => advert.id !== action.payload)]};
@@ -61,14 +59,6 @@ export function adverts(state=initialState.adverts, action) {
 };
 
 
-export function advertDetail(state=initialState.adverts, action) {
-    switch (action.type) {
-        case ADVERT_DETAIL_SUCCESS:
-            return {...state, loaded:true, data: action.payload}
-        default:
-            return state;
-    };
-};
 export function advertsTags(state=initialState.tags, action){
     switch (action.type) {
         case ADVERTS_TAGS_SUCCESS: 

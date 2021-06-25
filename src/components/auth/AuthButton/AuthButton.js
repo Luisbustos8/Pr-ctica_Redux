@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom';
 
 import {connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { ConfirmationButton } from '../../shared';
 
-import { logout } from '../../../api/auth';
+
 import { getIsLogged } from '../../store/selectors';
-import { authLogout } from '../../store/actions';
+import { authLogout, logoutAction } from '../../store/actions';
 
 const AuthButton = ({ onLogout, isLogged }) => {
+  const dispatch = useDispatch();
   const handleLogoutConfirm = async () => {
-    await logout();
+    dispatch(logoutAction());
     onLogout();
   };
+
 
   return isLogged ? (
     <ConfirmationButton

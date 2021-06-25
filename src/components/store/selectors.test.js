@@ -1,12 +1,13 @@
-import  { getAdvertDetail } from './selectors';
+import  { getAdvertDetail, getAdvertsList} from './selectors';
 
-describe('getAdvertDetail', () => {
+
+describe('getAdvertsList', () => {
     const data = [
         {updatedAt: '1', id: 'a'},
         {updatedAt: '2', id: 'b'},
     ];
-    test('should return the advert detail', () => {
-        const result = getAdvertDetail({adverts: {data: data}})
-        expect(data[0].id).toBe('a')
+    test('should return all adverts', () => {
+        const result = getAdvertsList({adverts: {data: data}})
+        expect(result).toHaveLength(data.length)
     })
 })

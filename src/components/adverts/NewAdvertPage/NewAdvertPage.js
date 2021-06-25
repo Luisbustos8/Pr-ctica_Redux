@@ -16,7 +16,9 @@ function NewAdvertPage({ history }) {
   const dispatch = useDispatch();
   const error = useSelector(getUI)
 
+
   const handleSubmit = newAdvert => {
+    
     dispatch(advertsCreatedAction(newAdvert));
   };
 
