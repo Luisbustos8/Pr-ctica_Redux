@@ -17,7 +17,7 @@ function AdvertPage({...props}) {
 
 
   const adverts = useSelector((state)=>getAdvertDetail(state, advertId))
-  // console.log(adverts)
+  
   
  
   React.useEffect(() => {

@@ -1,4 +1,4 @@
-import  { getAdvertDetail, getAdvertsList} from './selectors';
+import  { getAdvertsList } from './selectors';
 
 
 describe('getAdvertsList', () => {
